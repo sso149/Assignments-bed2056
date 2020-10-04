@@ -68,7 +68,7 @@ dframe <- dframe %>% mutate(region =
 # And how many regions has the variable?
 dframe %>% select(region) %>% unique()
 
-mosaic::tally(~region, data = dframe)
+# mosaic::tally(~region, data = dframe) #(unable to install "mosaic" package)
 
 head(dframe)
 # we now have the data in long format ready for data wrangling

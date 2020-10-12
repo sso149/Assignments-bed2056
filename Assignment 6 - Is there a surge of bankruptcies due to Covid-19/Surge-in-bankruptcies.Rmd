@@ -1,0 +1,25 @@
+---
+title: "Surge-in-bankruptcies?"
+author: "Sindre Sønvisen"
+date: "10/11/2020"
+output: 
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE, comment=NA, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+source("bankruptcies.r")
+```
+
+Below is the number of Commencement of liquidation proceedings for each region in 2018, 2019 and 2020. This will show if there is a rise in bankruptcies from 2018 and 2019 to 2020.
+
+```{r data, echo=FALSE, comment=NA, message=FALSE }
+data <- helper(2018,2020,1,12)
+```
+
+```{r plot, echo=FALSE, comment=NA, message=FALSE }
+helper_plot(data)
+```
+
+From the graphs above we can not say the corona pandemic have lead to an increase in bankruptcies compared to the previous years.

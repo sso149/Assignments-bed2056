@@ -15,55 +15,25 @@ source("read_files.r")
 This pages shows some statistics regarding child birth in US year 2017, 2018 and 2019. The data is provided by: Centers for Disease Control and Prevention (CDC). Link to the data used: [linked phrase](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm).
 
 ```{r data, echo=FALSE, comment=NA, message=FALSE }
-#The data need to be unzipped and placed in a folder named data, or change the loc and or pattern argument bellow.
-df <- read_files(loc="./data", pattern=".txt")
+# ALl the data and graph code is in read_files.r
 ```
 
 # Births by Gender
-Below is a bar graph of the number of girls proportional to boys born.
+Below is a bar graph of the number of girls proportional to boys born each year.
 ```{r plot gender, echo=FALSE, comment=NA, message=FALSE }
-bar_sex <- ggplot(df, aes(x = sex)) +
-  geom_bar(stat = "count",
-           width = 0.7,
-           fill = c("red", "blue")) +
-  ggtitle("Number of girls and boys born") +
-  ylab("Number born") + xlab("Gender")
-bar_sex
+graph_sex #from read_files.r
 ```
 
 # Weight by gender:
-Below is a bar graph of the average weight for both genders.
+Below is a graph of the average weight for both genders each year.
 ```{r plot weight_by_gender, echo=FALSE, comment=NA, message=FALSE }
-bar_weight_by_sex <-
-  ggplot(df[df$weight != 9999,], aes(x = sex, y = weight)) +
-  geom_bar(
-    stat = "summary",
-    fun = "mean",
-    width = 0.7,
-    fill = c("red", "blue")
-  ) +
-  ggtitle("weight by gender") +
-  ylab("Average weight in grams") + xlab("Gender")
-bar_weight_by_sex
+graph_weight_by_sex #from read_files.r
 ```
 
 # Gender by weekday:
-Below is a bar graph of the number og each gender born on the different days of the week.
+Below is a bar graph of the proportional of each gender born on the different days of the week each year.
 ```{r plot gender_by_weekday, echo=FALSE, comment=NA, message=FALSE }
-#Make a new field with the day names.
-days <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-df <- mutate(df, weekday=factor(days[week_day]))
-
-bar_sex_by_weekday <-
-  ggplot(df, aes(x = reorder(weekday, week_day), fill = sex)) +
-  geom_bar(stat = "count",
-           width = 0.7,
-           position = position_dodge()
-           ) +
-  ggtitle("Gender by Weekday") +
-  ylab("Number born") + xlab("Weekday") +
-  labs(fill = "Gender")
-bar_sex_by_weekday
+graph_sex_by_weekday #from read_files.r
 ```
 
 ### Method used to pars and present the data:
